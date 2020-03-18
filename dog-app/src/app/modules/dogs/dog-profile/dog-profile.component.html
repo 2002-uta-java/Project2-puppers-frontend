@@ -1,0 +1,15 @@
+<section class="content">
+        <div *ngIf="dog$ | async as dog">
+            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                style="max-width: 500px; width:100%; height: auto">
+            <div style="text-align: center;">
+                <h2>{{dog.dogName}}</h2>
+                <p>Gender: {{dog.gender}}</p>
+                <p>Breed: {{dog.breed}}</p>
+                <p>Age: {{dog.dogAge}}</p>
+                <p>Size: {{dog.dogSize}}</p>
+                <p>Weight: {{dog.weight}}</p>
+                <p>Bio: {{dog.bio}}</p>
+            </div>
+        </div>
+    </section>

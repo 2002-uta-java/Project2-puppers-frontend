@@ -7,7 +7,7 @@
   color: inherit;
 }
 
-.nav-links a:first-child {
+.nav-links > a:first-child {
   margin-left: 0;
 }
 
@@ -17,10 +17,17 @@
   color: inherit;
 }
 
-.nav-links a:hover {
+.nav-links .nav-link:hover {
   border-bottom: #fff solid 2px;
 }
 
 .active {
   border-bottom: #fff solid 2px;
+}
+
+.navbar {
+  display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }

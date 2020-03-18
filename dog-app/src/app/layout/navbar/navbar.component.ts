@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 
 @Component({
@@ -7,12 +8,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  currentUser$: Observable<boolean>;
   @Input() isHandset:boolean;
   @Output() menuClick:EventEmitter<any> = new EventEmitter();
   
   constructor() { }
 
   ngOnInit(): void {
+    this.currentUser$ = of(true);
   }
 
   onMenuClick() {

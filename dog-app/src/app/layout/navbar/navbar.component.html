@@ -1,26 +1,40 @@
-<mat-toolbar color="primary">
-        <button type="button" aria-label="Toggle sidenav" mat-icon-button *ngIf="isHandset" (click)="onMenuClick()">
-          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-        </button>
+<mat-toolbar color="primary" class="navbar">
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button *ngIf="isHandset || (currentUser$ | async)"
+    (click)="onMenuClick()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+<div class="nav-links">
+  <a class="brand" routerLink="/">Puppers</a>
   
-        <a class="brand" routerLink="/">Puppers</a>
-  
-        <span class="toolbar-spacer"></span>
-  
-        <nav class="nav-links" *ngIf="!isHandset">
-            <a routerLink="/about" routerLinkActive="active">About Us</a>
-            <a routerLink="/contact" routerLinkActive="active">Contact</a>
-        </nav>
-  
-        <span class="toolbar-spacer"></span>
-  
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-          <mat-icon aria-hidden="false" aria-label="Profile icon">person</mat-icon>
-        </button>
-        
-        <mat-menu #menu="matMenu" xPosition="before">
-          <a routerLink="/login" mat-menu-item>
-            Log in
-          </a>
-        </mat-menu>
-      </mat-toolbar>
+  <span *ngIf="isHandset || !(currentUser$ | async) ">
+    <a class="nav-link" *ngIf="!isHandset" routerLink="/about" routerLinkActive="active">About Us</a>
+    <a class="nav-link" *ngIf="!isHandset" routerLink="/contact" routerLinkActive="active">Contact</a>
+  </span>
+</div>
+  <div class="toolbar-spacer"></div>
+
+  <div *ngIf="(currentUser$ | async); else elseBlock">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+      <mat-icon aria-hidden="false" aria-label="Profile icon">person</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu" xPosition="before">
+      <a routerLink="/user" mat-menu-item>
+        Profile
+      </a>
+      <a routerLink="/logout" mat-menu-item>
+        Log out
+      </a>
+    </mat-menu>
+  </div>
+  <ng-template #elseBlock>
+    <div class="nav-links">
+      <a mat-raised-button color="accent" aria-label="Register link">
+        Register
+      </a>
+      <a mat-raised-button color="accent" aria-label="Login link">
+        Log in
+      </a>
+    </div>
+  </ng-template>
+</mat-toolbar>

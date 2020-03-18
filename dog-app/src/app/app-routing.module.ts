@@ -12,6 +12,10 @@ const routes: Routes = [
     loadChildren: () => import('@modules/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
+    path: "dogs",        
+    loadChildren: () => import('@modules/dogs/dogs.module').then(m => m.DogsModule)
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
