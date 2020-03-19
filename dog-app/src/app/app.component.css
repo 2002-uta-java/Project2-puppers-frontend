@@ -1,0 +1,26 @@
+/* Container */
+.sidenav-container {
+  height: 100%;
+}
+
+/* Sidenav */
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+/* Sidenav Content */
+
+mat-sidenav-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+main {
+  flex-grow: 1;
+}

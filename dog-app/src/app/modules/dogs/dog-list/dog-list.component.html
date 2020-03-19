@@ -1,0 +1,24 @@
+<mat-grid-list cols="4" [rowHeight]="(cards$ | async).rowHeight" gutterSize="20px">
+    <mat-grid-tile *ngFor="let dog of dogs$ | async" [colspan]="(cards$ | async).cols"
+        [rowspan]="(cards$ | async).rows">
+        <a [routerLink]="[dog.id]">
+            <mat-card class="card">
+                <mat-card-content class="card-content">
+                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                        alt="Photo of dog">
+                    <mat-card-content>
+                        <p>
+                            {{dog.dogName | titlecase }}
+                        </p>
+                        <p>
+                            {{dog.gender | titlecase}}
+                        </p>
+                        <p>
+                            {{dog.breed | titlecase}}
+                        </p>
+                    </mat-card-content>
+                </mat-card-content>
+            </mat-card>
+        </a>
+    </mat-grid-tile>
+</mat-grid-list>
