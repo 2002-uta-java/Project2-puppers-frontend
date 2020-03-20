@@ -15,12 +15,12 @@ export class DogListComponent implements OnInit {
     switchMap(({ matches }) => {
       if (matches) {
         return [
-          { rowHeight: '1:5',cols: 4, rows: 1 },
+          { rowHeight: '45vh',cols: 4, rows: 1 },
         ];
       }
 
       return [
-        { rowHeight: '1:1.4',cols: 1, rows: 1 },
+        { rowHeight: '40vh',cols: 1, rows: 1 },
       ];
     })
   );
