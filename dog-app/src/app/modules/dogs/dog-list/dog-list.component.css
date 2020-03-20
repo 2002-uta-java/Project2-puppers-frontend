@@ -1,10 +1,8 @@
-.card {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-  }
+
+  mat-card img{
+    object-fit: cover;
+    height: 25vh;
+    }
   
   .card-content {
     text-align: center;

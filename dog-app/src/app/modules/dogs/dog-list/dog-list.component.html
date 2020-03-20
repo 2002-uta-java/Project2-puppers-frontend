@@ -4,17 +4,14 @@
         <a [routerLink]="[dog.id]">
             <mat-card class="card">
                 <mat-card-content class="card-content">
-                    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                        alt="Photo of dog">
+                    <img mat-card-image [src]="dog.imageUrl"
+                        alt="Profile Photo">
                     <mat-card-content>
                         <p>
                             {{dog.dogName | titlecase }}
                         </p>
                         <p>
                             {{dog.gender | titlecase}}
-                        </p>
-                        <p>
-                            {{dog.breed | titlecase}}
                         </p>
                     </mat-card-content>
                 </mat-card-content>
