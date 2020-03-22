@@ -1,11 +1,31 @@
+import { Owner } from '@shared/models/owner';
+
 export class Dog {
     id: number;
-    userId: number;
-    dogName: string;
+    ownerId: Owner;
+    name: string;
     gender: string;
     breed: string;
-    dogAge: string;
+    age: number;
     dogSize: string;
     weight: number;
-    bio: string;
+    profileComment: string;
+    imageUrl: string;
+    dogStatus?: string;
+
+    constructor(response?: any) {
+        if (response != null) {
+            this.id = response.id;
+            this.ownerId = new Owner(response.ownerId);
+            this.name = response.name;
+            this.gender = response.gender;
+            this.breed = response.breed;
+            this.age = response.age;
+            this.dogSize = response.dogSize;
+            this.weight = response.weight;
+            this.dogStatus = response.dogStatus
+            this.profileComment = response.profileComment;
+            this.imageUrl = response.imageUrl;
+        }
+    }
 }

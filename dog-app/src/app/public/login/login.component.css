@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+    background-image: url("https://wallpaperaccess.com/full/493535.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
+    z-index:-1;
+  }
+
+  mat-card {
+    z-index: 1;
+    max-width:350px;
+    width: 100%;
+  }
+  
+  .vertical-form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .vertical-form > * {
+    margin-bottom: 20px;
+  }
+  
+  .form-input {
+    margin-bottom: 20px;
+  }
+  
+  .form-title {
+    text-align: center;
+  }
+  
+  .overlay {
+    width: 100%;
+    height:100%;
+    opacity: 0.3;
+    background-color: white;
+    z-index: 0;
+    position: absolute;
+  }
+
+/* Overriding mat-button style */
+.link-btns .mat-button {
+  padding: 0 6px;
+}

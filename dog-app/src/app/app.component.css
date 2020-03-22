@@ -4,6 +4,10 @@
 }
 
 /* Sidenav */
+.sidenav {
+  width: 200px
+}
+
 .sidenav .mat-toolbar {
   background: inherit;
 }
@@ -23,4 +27,5 @@ mat-sidenav-content {
 
 main {
   flex-grow: 1;
+  position: relative;
 }
