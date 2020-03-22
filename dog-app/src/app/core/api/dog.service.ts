@@ -10,7 +10,7 @@ import { tap, catchError } from 'rxjs/operators';
 // const dogCreate = "http://ec2-52-15-186-205.us-east-2.compute.amazonaws.com:8090/puppers/dogs/new";
 // const dogUpdate = "http://ec2-52-15-186-205.us-east-2.compute.amazonaws.com:8090/puppers/dogs/update";
 // const dogDelete = "http://ec2-52-15-186-205.us-east-2.compute.amazonaws.com:8090/puppers/dogs/delete";
-
+// 
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };

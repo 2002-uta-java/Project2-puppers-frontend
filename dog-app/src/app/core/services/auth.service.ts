@@ -30,25 +30,12 @@ export class AuthService {
     return this.http.post<any>(url, { email, password }, HTTP_OPTIONS).pipe(
       switchMap((owner: Owner) => {
         const currentOwner = new Owner(owner);
-        console.log(`login w/ id=${currentOwner.ownerId}`)
+        console.log(`login w/ id=${currentOwner.id}`)
         this._currentOwnerSubject.next(currentOwner);
         return this.currentOwner$;
       }),
       catchError(this.handleError<Owner>('ownerLogin', null))
     )
-
-    // const url = `https://my-json-server.typicode.com/dhtran91/demo/owners?email=${email}&password=${password}`;
-    // return this.http.get(url).pipe(
-    //   switchMap(data => {
-    //       this._currentOwnerSubject.next(new Owner(data[0]));
-    //       return this.currentOwner$;
-    //   }),
-    //   catchError(err => {
-    //     console.log(err); 
-    //     this._currentOwnerSubject.next(null)
-    //     return this.currentOwner$;
-    //   })
-    // );
   }
 
   logout(): void {

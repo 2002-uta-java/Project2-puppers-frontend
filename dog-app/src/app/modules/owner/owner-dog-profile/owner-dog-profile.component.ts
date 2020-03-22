@@ -32,20 +32,26 @@ export class OwnerDogProfileComponent implements OnInit {
           this.owner = currentOwner;
           return this.dogService.getDogs()
         })
-        ).subscribe((dogs:Dog[]) => this.dogs = dogs.filter(d => d.ownerId == this.owner.ownerId))
+        ).subscribe((dogs:Dog[]) => {
+          console.log(dogs)
+          this.dogs = dogs.filter((d: Dog) => {
+            return d.ownerId.id == this.owner.id
+          })
+        })
   }
 
   onAdd() {
     const newDog = new Dog();
     newDog.id = null;
-    newDog.dogName = "New";
+    newDog.name = "New";
     newDog.gender = "";
     newDog.breed = "";
-    newDog.dogAge = "";
+    newDog.age = 0;
     newDog.dogSize = "";
     newDog.weight = 0;
     newDog.profileComment = "";
     newDog.imageUrl = "";
+    newDog.ownerId = {...this.owner};
     this.onEdit(newDog);
     this.dogs.push(this.editDog);
     this.selected = this.dogs.length - 1;

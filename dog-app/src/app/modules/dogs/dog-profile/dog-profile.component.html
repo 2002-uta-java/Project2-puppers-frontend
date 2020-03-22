@@ -1,14 +1,14 @@
 <section class="content">
         <div *ngIf="dog$ | async as dog">
             <div class="image-container">
-                    <img [src]="dog.imageUrl" class="image">
+                    <img [src]="dog.imageUrl || dog.imageUrl === 'url' ? 'https://www.breakthroughk9training.com/wp-content/uploads/2015/02/dog-with-question-marks.png' : dog.imageUrl" class="image">
             </div>
             <div style="text-align: center;">
-                <h2>{{dog.dogName}}</h2>
+                <h2>{{dog.name}}</h2>
                 <p>"{{dog.profileComment}}"</p>
                 <p>Gender: {{dog.gender}}</p>
                 <p>Breed: {{dog.breed}}</p>
-                <p>Age: {{dog.dogAge}}</p>
+                <p>Age: {{dog.age}}</p>
                 <p>Size: {{dog.dogSize}}</p>
                 <p>Weight: {{dog.weight}}</p>
             </div>

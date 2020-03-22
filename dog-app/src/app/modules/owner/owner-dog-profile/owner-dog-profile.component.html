@@ -1,20 +1,27 @@
 <div class="container">
     <h1 class="mat-h1">My Dogs</h1>
     <div style="position:relative">
+        <div class="button-container">
+                <button mat-button class="add-button"
+                (click)="onAdd()" *ngIf="!isEditing">
+                <mat-icon>add</mat-icon> Add New Dog
+            </button>
+        </div>
+            
         <mat-tab-group *ngIf="dogs" [selectedIndex]="selected">
-            <mat-tab [label]="dog.dogName" *ngFor="let dog of dogs; let index = index">
+            <mat-tab [label]="dog.name" *ngFor="let dog of dogs; let index = index">
                 <ng-template matTabContent>
                     <div class="content">
                         <ng-container *ngIf="!isEditing || editDog.id !== dog.id">
                             <div class="image-container">
-                                <img [src]="dog.imageUrl" class="image">
+                                <img [src]="dog.imageUrl || dog.imageUrl === 'url' ? 'https://www.breakthroughk9training.com/wp-content/uploads/2015/02/dog-with-question-marks.png' : dog.imageUrl" class="image">
                             </div>
                             <div style="text-align: center;">
-                                <h2>{{dog.dogName}}</h2>
+                                <h2>{{dog.name}}</h2>
                                 <p>"{{dog.profileComment}}"</p>
                                 <p>Gender: {{dog.gender}}</p>
                                 <p>Breed: {{dog.breed}}</p>
-                                <p>Age: {{dog.dogAge}}</p>
+                                <p>Age: {{dog.age}}</p>
                                 <p>Size: {{dog.dogSize}}</p>
                                 <p>Weight: {{dog.weight}}</p>
                             </div>
@@ -36,7 +43,7 @@
                                 style="position: relative;">
                                 <mat-form-field appearance="fill">
                                     <mat-label>Name</mat-label>
-                                    <input matInput name="dogName" type="text" id="email" [(ngModel)]="editDog.dogName"
+                                    <input matInput name="ame" type="text" id="email" [(ngModel)]="editDog.name"
                                         #dogName="ngModel" required>
                                 </mat-form-field>
                                 <div class="form-field">
@@ -60,8 +67,8 @@
 
                                 <mat-form-field appearance="fill">
                                     <mat-label>Age</mat-label>
-                                    <input matInput type="number" id="dogAge" [(ngModel)]="editDog.dogAge" name="dogAge"
-                                        #dogAge="ngModel" required>
+                                    <input matInput type="number" id="age" [(ngModel)]="editDog.age" name="age"
+                                        #age="ngModel" required>
                                 </mat-form-field>
 
                                 <mat-form-field appearance="fill">
@@ -104,10 +111,7 @@
                 </ng-template>
             </mat-tab>
         </mat-tab-group>
-        <button mat-button class="more-button" style="position: absolute; top: 0; right: 0; z-index: 2;"
-            (click)="onAdd()" *ngIf="!isEditing">
-            <mat-icon>add</mat-icon> Add New Dog
-        </button>
+
         <div class="content" style="margin-top: 48px" *ngIf="dogs?.length == 0">
             <h2>You don't have any dogs yet! Add one now!</h2>
         </div>

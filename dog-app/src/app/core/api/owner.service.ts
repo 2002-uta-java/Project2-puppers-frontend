@@ -45,7 +45,7 @@ export class OwnerService {
     const url = `${this.apiEndPoint}/new`
 
     return this.http.post<Owner>(url, owner, HTTP_OPTIONS).pipe(
-      tap((o: Owner) => console.log(`added owner w/ id=${o.ownerId}`)),
+      tap((o: Owner) => console.log(`added owner w/ id=${o.id}`)),
       catchError(this.handleError<Owner>('addOwner'))
     );
   }
@@ -54,7 +54,7 @@ export class OwnerService {
     const url = `${this.apiEndPoint}/update`;
 
     return this.http.put<Owner>(url, owner, HTTP_OPTIONS).pipe(
-      tap((o: Owner) => console.log(`updated owner w/ id=${o.ownerId}`)),
+      tap((o: Owner) => console.log(`updated owner w/ id=${o.id}`)),
         catchError(this.handleError<any>('updateOwner'))
     )
   }
