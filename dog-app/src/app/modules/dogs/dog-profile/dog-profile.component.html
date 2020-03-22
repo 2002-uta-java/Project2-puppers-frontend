@@ -1,7 +1,7 @@
 <section class="content">
         <div *ngIf="dog$ | async as dog">
             <div class="image-container">
-                    <img [src]="dog.imageUrl || dog.imageUrl === 'url' ? 'https://www.breakthroughk9training.com/wp-content/uploads/2015/02/dog-with-question-marks.png' : dog.imageUrl" class="image">
+                    <img [src]="dog.imageUrl || dog.imageUrl === 'url' ? 'https://www.breakthroughk9training.com/wp-content/uploads/2015/02/dog-with-question-marks.png' : dog.imageUrl" class="image" alt="Dog profile photo">
             </div>
             <div style="text-align: center;">
                 <h2>{{dog.name}}</h2>
