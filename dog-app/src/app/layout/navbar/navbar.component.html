@@ -1,38 +1,38 @@
 <mat-toolbar color="primary" class="navbar">
-  <button type="button" aria-label="Toggle sidenav" mat-icon-button *ngIf="isHandset || (currentUser$ | async)"
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button *ngIf="isHandset || (currentOwner$ | async)"
     (click)="onMenuClick()">
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
 <div class="nav-links">
   <a class="brand" routerLink="/">Puppers</a>
   
-  <span *ngIf="isHandset || !(currentUser$ | async) ">
+  <span *ngIf="isHandset || !(currentOwner$ | async) ">
     <a class="nav-link" *ngIf="!isHandset" routerLink="/about" routerLinkActive="active">About Us</a>
     <a class="nav-link" *ngIf="!isHandset" routerLink="/contact" routerLinkActive="active">Contact</a>
   </span>
 </div>
   <div class="toolbar-spacer"></div>
 
-  <div *ngIf="(currentUser$ | async); else elseBlock">
+  <div *ngIf="(currentOwner$ | async); else elseBlock">
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
       <mat-icon aria-hidden="false" aria-label="Profile icon">person</mat-icon>
     </button>
 
     <mat-menu #menu="matMenu" xPosition="before">
-      <a routerLink="/user" mat-menu-item>
+      <a routerLink="owners/profile" mat-menu-item>
         Profile
       </a>
-      <a routerLink="/logout" mat-menu-item>
+      <button (click)="onLogout()" mat-menu-item>
         Log out
-      </a>
+      </button>
     </mat-menu>
   </div>
   <ng-template #elseBlock>
     <div class="nav-links">
-      <a mat-raised-button color="accent" aria-label="Register link">
+      <a mat-raised-button color="accent" aria-label="Register link" routerLink="/register">
         Register
       </a>
-      <a mat-raised-button color="accent" aria-label="Login link">
+      <a mat-raised-button color="accent" aria-label="Login link" routerLink="/login">
         Log in
       </a>
     </div>

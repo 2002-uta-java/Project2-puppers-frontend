@@ -1,7 +1,8 @@
 <section class="content">
         <div *ngIf="dog$ | async as dog">
-            <img [src]="dog.imageUrl"
-                style="max-width: 500px; width:100%; height: auto">
+            <div class="image-container">
+                    <img [src]="dog.imageUrl" class="image">
+            </div>
             <div style="text-align: center;">
                 <h2>{{dog.dogName}}</h2>
                 <p>"{{dog.profileComment}}"</p>

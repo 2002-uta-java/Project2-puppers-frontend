@@ -1,0 +1,115 @@
+<div class="container">
+    <h1 class="mat-h1">My Dogs</h1>
+    <div style="position:relative">
+        <mat-tab-group *ngIf="dogs" [selectedIndex]="selected">
+            <mat-tab [label]="dog.dogName" *ngFor="let dog of dogs; let index = index">
+                <ng-template matTabContent>
+                    <div class="content">
+                        <ng-container *ngIf="!isEditing || editDog.id !== dog.id">
+                            <div class="image-container">
+                                <img [src]="dog.imageUrl" class="image">
+                            </div>
+                            <div style="text-align: center;">
+                                <h2>{{dog.dogName}}</h2>
+                                <p>"{{dog.profileComment}}"</p>
+                                <p>Gender: {{dog.gender}}</p>
+                                <p>Breed: {{dog.breed}}</p>
+                                <p>Age: {{dog.dogAge}}</p>
+                                <p>Size: {{dog.dogSize}}</p>
+                                <p>Weight: {{dog.weight}}</p>
+                            </div>
+
+                            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu"
+                                aria-label="Toggle menu" *ngIf="!isEditing">
+                                <mat-icon>more_vert</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu" xPosition="before">
+                                <button mat-menu-item (click)="onEdit(dog)">Edit
+                                    Dog</button>
+                                <button mat-menu-item (click)="onDelete(dog)">Delete Dog</button>
+                            </mat-menu>
+                        </ng-container>
+
+                        <ng-container *ngIf="(isEditing && editDog.id == dog.id)">
+                            
+                            <form (ngSubmit)="dogForm.valid && onSubmit()" #dogForm="ngForm" class="dog-form"
+                                style="position: relative;">
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Name</mat-label>
+                                    <input matInput name="dogName" type="text" id="email" [(ngModel)]="editDog.dogName"
+                                        #dogName="ngModel" required>
+                                </mat-form-field>
+                                <div class="form-field">
+                                    <label>Gender:</label>
+                                    
+                                    <mat-radio-group id="gender" name="gender" type="radio" [(ngModel)]="editDog.gender" required>
+                                        <mat-radio-button value="Female">
+                                            Female
+                                        </mat-radio-button>
+                                        <mat-radio-button value="Male">
+                                            Male
+                                        </mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Breed</mat-label>
+                                    <input matInput name="breed" type="text" id="breed" [(ngModel)]="editDog.breed"
+                                        #breed="ngModel" required>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Age</mat-label>
+                                    <input matInput type="number" id="dogAge" [(ngModel)]="editDog.dogAge" name="dogAge"
+                                        #dogAge="ngModel" required>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Size</mat-label>
+                                    <input matInput type="text" id="dogsize" [(ngModel)]="editDog.dogSize" name="dogSize"
+                                        #dogSize="ngModel" required>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Weight</mat-label>
+                                    <input matInput type="number" id="weight" [(ngModel)]="editDog.weight" name="weight"
+                                        #weight="ngModel" required>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Profile Comment</mat-label>
+                                    <textarea matInput rows="4" id="profileComment" [(ngModel)]="editDog.profileComment"
+                                        name="profileComment" #profileComment="ngModel" required></textarea>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Image Url</mat-label>
+                                    <input matInput type="text" id="imageUrl" [(ngModel)]="editDog.imageUrl" name="imageUrl"
+                                        #imageUrl="ngModel" required>
+                                </mat-form-field>
+
+                                <button mat-raised-button class="delete-tab-button" (click)="onDelete(editDog)"
+                                     color="warn" *ngIf="editDog.id">
+                                    Delete Dog
+                                </button>
+
+                                <div>
+                                    <button mat-stroked-button style="margin-right:10px;"
+                                        (click)="onCancel(editDog)">Cancel</button>
+                                    <button mat-raised-button color="primary" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </ng-container>
+                    </div>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+        <button mat-button class="more-button" style="position: absolute; top: 0; right: 0; z-index: 2;"
+            (click)="onAdd()" *ngIf="!isEditing">
+            <mat-icon>add</mat-icon> Add New Dog
+        </button>
+        <div class="content" style="margin-top: 48px" *ngIf="dogs?.length == 0">
+            <h2>You don't have any dogs yet! Add one now!</h2>
+        </div>
+    </div>
+</div>

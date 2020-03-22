@@ -9,8 +9,8 @@ export class Owner {
 
     constructor(response?: any) {
         if(response != null) {
-            this.ownerId = response.ownerId;
-            this.address = response.addres;
+            this.ownerId = response.id;
+            this.address = response.address;
             this.email = response.email;
             this.firstName = response.firstName;
             this.lastName = response.lastName;

@@ -2,19 +2,21 @@
   <!-- Will need to change when user logs in so sidenav stays open -->
   <!-- Close sidenav when screen change -->
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="'navigation'"
-  [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="((isHandset$ | async) === true) && false">
-    <mat-toolbar>Menu</mat-toolbar>
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="((isHandset$ | async) === false) && (currentOwner !== null)">
+    <mat-toolbar style="justify-content: center;">Menu</mat-toolbar>
     <mat-nav-list>
       <!-- Public Links -->
       <a routerLink="/" mat-list-item>Home</a>
       <a routerLink="/about" mat-list-item>About Us</a>
       <a routerLink="/contact" mat-list-item>Contact</a>
-      <mat-divider></mat-divider>
       <!-- User Links -->
-      <a routerLink="/dashboard" mat-list-item>Dashboard</a>
-      <a routerLink="/my-dogs" mat-list-item>My Dogs</a>
-      <a routerLink="/dogs" mat-list-item>View Dogs</a>
-      <a routerLink="/breeds" mat-list-item>Explore Breeds</a>
+      <ng-container *ngIf="currentOwner !== null">
+        <mat-divider></mat-divider>
+        <a routerLink="/dashboard" mat-list-item>Dashboard</a>
+        <a routerLink="/owners/my-dogs" mat-list-item>My Dogs</a>
+        <a routerLink="/dogs" mat-list-item>View Dogs</a>
+        <a routerLink="/breeds" mat-list-item>Explore Breeds</a>
+      </ng-container>
     </mat-nav-list>
   </mat-sidenav>
 
