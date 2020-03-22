@@ -25,9 +25,9 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    const url = "http://ec2-52-15-186-205.us-east-2.compute.amazonaws.com:8090/puppers/owners/login"
+    const url = `http://ec2-52-15-186-205.us-east-2.compute.amazonaws.com:8090/puppers/owners/login/${email}/${password}`
     
-    return this.http.post<any>(url, { email, password }, HTTP_OPTIONS).pipe(
+    return this.http.post<any>(url, HTTP_OPTIONS).pipe(
       switchMap((owner: Owner) => {
         const currentOwner = new Owner(owner);
         console.log(`login w/ id=${currentOwner.id}`)
