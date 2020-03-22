@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
-    this.authService.login('hoang@revature.com', 'password').subscribe();
     
     this.authService.currentOwner$.subscribe(o => this.currentOwner = o);
   }
