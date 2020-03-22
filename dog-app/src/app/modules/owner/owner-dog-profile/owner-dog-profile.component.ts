@@ -22,23 +22,18 @@ export class OwnerDogProfileComponent implements OnInit {
   constructor(private dogService: DogService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    // this.authService.currentOwner$.pipe(
-    //   switchMap(currentOwner => {
-    //     this.owner = currentOwner;
-    //     return this.dogService.getDogsByOwnerId(currentOwner.ownerId);
-    //   })).subscribe(dogs => this.dogs = dogs)
-      this.authService.currentOwner$.pipe(
-        switchMap(currentOwner => {
-          this.owner = currentOwner;
-          return this.dogService.getDogs()
-        })
-        ).subscribe((dogs:Dog[]) => {
-          console.log(dogs)
-          this.dogs = dogs.filter((d: Dog) => {
-            return d.ownerId.id == this.owner.id
-          })
-        })
+    this.authService.currentOwner$.pipe(
+      switchMap(currentOwner => {
+        this.owner = currentOwner;
+        return this.dogService.getDogs()
+      })
+    ).subscribe((dogs: Dog[]) => {
+      this.dogs = dogs.filter((d: Dog) => {
+        return d.ownerId.id == this.owner.id
+      })
+    })
   }
+
 
   onAdd() {
     const newDog = new Dog();
@@ -51,7 +46,7 @@ export class OwnerDogProfileComponent implements OnInit {
     newDog.weight = 0;
     newDog.profileComment = "";
     newDog.imageUrl = "";
-    newDog.ownerId = {...this.owner};
+    newDog.ownerId = { ...this.owner };
     this.onEdit(newDog);
     this.dogs.push(this.editDog);
     this.selected = this.dogs.length - 1;
@@ -59,50 +54,32 @@ export class OwnerDogProfileComponent implements OnInit {
 
   onEdit(dog) {
     this.isEditing = true;
-    this.editDog = {...dog};
+    this.editDog = { ...dog };
   }
 
-  onDelete(dog) {
-    console.log(dog)
-    this.dogService.removeDog(dog.id).subscribe(res => {
-      console.log(res);
-      if(res) {
-        this.resetState();
-        this.removeTab(dog)
-      }
-    })
+  onDelete(dog): void {
+    this.dogService.removeDog(dog.id).subscribe();
+    this.resetState();
+    this.removeTab(dog)
   }
 
   onSubmit() {
     if (this.editDog.id) {
-
-      this.dogService.updateDog(this.editDog).subscribe(dog => {
-        console.log(dog)
-        if(dog) {
-          this.dogs = [...this.dogs.filter(d => d.id !== this.editDog.id), dog]
-          this.editDog = null;
-          this.isEditing = false;
-        } else {
-
-        }
-      })
+      this.dogService.updateDog(this.editDog).subscribe();
+      this.dogs = [...this.dogs.filter(d => d.id !== this.editDog.id), { ...this.editDog }]
     } else if (this.editDog.id == null) {
-      this.dogService.createDog(this.editDog).subscribe(dog => {
-        console.log(dog)
-        if(dog) {
-          this.dogs = [...this.dogs.filter(d => d.id !== this.editDog.id), dog]
-          this.editDog = null;
-          this.isEditing = false;
-        } else {
-          
-        }
-      })
-    } 
+      this.removeTab(this.editDog)
+      this.dogService.createDog(this.editDog).pipe(
+        switchMap(_ => this.dogService.getDogs())
+      ).subscribe((dogs: Dog[]) => this.dogs = dogs.filter((d: Dog) => d.ownerId.id == this.owner.id))
+    }
+
+    this.resetState();
   }
 
   onCancel(dog) {
     this.resetState();
-    if(dog.id == null) {
+    if (dog.id == null) {
       this.removeTab(dog);
     }
   }
@@ -113,9 +90,7 @@ export class OwnerDogProfileComponent implements OnInit {
   }
 
   private removeTab(dog) {
-    this.dogs = this.dogs.filter((ele) => {
-      return ele.id !== dog.id
-    });
+    this.dogs = this.dogs.filter(d => d.id !== dog.id);
     this.selected = this.dogs.length - 1;
   }
 }
