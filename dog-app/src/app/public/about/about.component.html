@@ -1,1 +1,18 @@
-<p>about works!</p>
+<div class="hero-container">
+    <div class="hero-text-container">
+        <h1 class="hero-title"></h1>
+    </div>
+    <div class="hero-image"></div>
+    <div class="overlay"></div>
+</div>
+<section class="content">
+    <div class="about-container" *ngFor="let member of members">
+        <div class="image-container">
+            <img src="https://via.placeholder.com/150" class="image" alt="Member photo">
+        </div>
+        <div style="text-align: center;">
+            <h2>{{member.name}}</h2>
+            <p>{{member.job}}</p>
+        </div>
+    </div>
+</section>

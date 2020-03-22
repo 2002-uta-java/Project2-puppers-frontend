@@ -69,7 +69,7 @@ export class DogService {
   }
 
   removeDog(id: number): Observable<any> {
-    const url = `${this.apiEndPoint}/delete`;
+    const url = `${this.apiEndPoint}/${id}`;
 
     return this.http.delete(url, HTTP_OPTIONS).pipe(
       tap(_ => console.log(`deleted dog id=${id}`)),
