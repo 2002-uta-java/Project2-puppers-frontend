@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, shareReplay, tap } from 'rxjs/operators';
+import { AuthService } from '@core/services/auth.service';
+import { Owner } from '@shared/models/owner';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,9 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
   isHandset$: Observable<boolean>;
-  
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  currentOwner: Owner;
+  isLoggedIn: boolean
+  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {}
 
   ngOnInit():void {
     this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
@@ -19,6 +22,8 @@ export class AppComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
+    
+    this.authService.currentOwner$.subscribe(o => this.currentOwner = o);
   }
 
 }

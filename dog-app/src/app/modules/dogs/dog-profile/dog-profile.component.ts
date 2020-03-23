@@ -18,7 +18,7 @@ export class DogProfileComponent implements OnInit {
     this.dog$ = this.route.paramMap.pipe(switchMap
       (data => {
         const id = +data.get('id');
-          return  this.dogService.getDog(id)
+          return  this.dogService.getDogById(id)
         }));
   }
 

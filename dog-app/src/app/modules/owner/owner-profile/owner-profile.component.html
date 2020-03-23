@@ -1,0 +1,13 @@
+<div class="container">
+<h1 class="mat-h1">My Profile</h1>
+<section class="content">
+    <div *ngIf="owner$ | async as owner">
+        <div style="text-align: center;">
+            <h2>{{owner.firstName}} {{owner.lastName}}</h2>
+            <p>Email: {{owner.email}} </p>
+            <p>Address: {{owner.address}}, {{owner.postalCode}}</p>
+            <p>Password: {{owner?.password}}</p>
+        </div>
+    </div>
+</section>
+</div>

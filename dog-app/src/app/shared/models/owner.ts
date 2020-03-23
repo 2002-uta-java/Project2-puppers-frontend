@@ -1,5 +1,5 @@
 export class Owner {
-    ownerId: number;
+    id: number;
     address: string;
     email: string;
     firstName: string;
@@ -9,8 +9,8 @@ export class Owner {
 
     constructor(response?: any) {
         if(response != null) {
-            this.ownerId = response.ownerId;
-            this.address = response.addres;
+            this.id = response.id;
+            this.address = response.address;
             this.email = response.email;
             this.firstName = response.firstName;
             this.lastName = response.lastName;

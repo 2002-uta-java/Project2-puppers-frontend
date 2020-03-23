@@ -6,7 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about.component.css']
 })
 export class AboutComponent implements OnInit {
-
+  members = [
+    {
+      name: "David Tran",
+      job: "Full-Stack Developer"
+    },
+    {
+      name: "Jay Boucher",
+      job: "Full-Stack Developer"
+    },
+    {
+      name: "Hoang Dang",
+      job: "Full-Stack Developer"
+    }
+  ]
   constructor() { }
 
   ngOnInit(): void {

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { AuthService } from '@core/services/auth.service';
+import { Owner } from '@shared/models/owner';
 
 
 @Component({
@@ -8,18 +10,22 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  currentUser$: Observable<boolean>;
+  currentOwner$: Observable<Owner>;
   @Input() isHandset:boolean;
   @Output() menuClick:EventEmitter<any> = new EventEmitter();
   
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.currentUser$ = of(true);
+    this.currentOwner$ = this.authService.currentOwner$;
   }
 
   onMenuClick() {
     this.menuClick.emit();
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 
 }

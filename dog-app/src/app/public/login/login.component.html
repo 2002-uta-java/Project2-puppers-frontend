@@ -1,1 +1,34 @@
-<p>login works!</p>
+<div class="container">
+    <mat-card>
+        <form class="vertical-form" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+            <h1 class="form-title">Puppers</h1>
+            <mat-error *ngIf="showLoginError">The username or password you have entered is incorrect. Please try again.
+            </mat-error>
+            <mat-form-field appearance="fill" class="form-input" focused>
+                <mat-label>Enter your email</mat-label>
+                <input type="email" matInput [formControl]="email">
+                <mat-error *ngIf="email.errors?.required">Email is required.</mat-error>
+                <mat-error *ngIf="email.errors?.email">Invalid email.</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="form-input">
+                <mat-label>Enter your password</mat-label>
+                <input matInput [formControl]="password" [type]="hide ? 'password' : 'text'">
+                <mat-error *ngIf="password.errors?.required">Password is required.</mat-error>
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </mat-form-field>
+            <div class="link-btns">
+                <a mat-button routerLink="/forgot-password" class="link-btn" color="primary">Forget Password?</a>
+
+                <div style="text-align: center;">Don't have an account yet? <a mat-button routerLink="/register"
+                        class="link-btn" color="primary">Create one</a></div>
+            </div>
+
+            <button [disabled]="!loginForm.valid" type="submit" mat-raised-button color="primary">Log in</button>
+
+        </form>
+    </mat-card>
+    <div class="overlay"></div>
+</div>

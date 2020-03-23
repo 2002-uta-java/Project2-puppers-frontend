@@ -4,11 +4,14 @@
         <a [routerLink]="[dog.id]">
             <mat-card class="card">
                 <mat-card-content class="card-content">
-                    <img mat-card-image [src]="dog.imageUrl"
-                        alt="Profile Photo">
+                    <div class="image-container">
+                        <img mat-card-image class="image" [src]="dog.imageUrl || dog.imageUrl === 'url' ? 'https://www.breakthroughk9training.com/wp-content/uploads/2015/02/dog-with-question-marks.png' : dog.imageUrl"
+                            alt="Profile Photo">
+                    </div>
+                        
                     <mat-card-content>
                         <p>
-                            {{dog.dogName | titlecase }}
+                            {{dog.name | titlecase }}
                         </p>
                         <p>
                             {{dog.gender | titlecase}}

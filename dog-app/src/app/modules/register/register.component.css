@@ -1,0 +1,37 @@
+
+.h2 {
+  text-align: center;
+  text-emphasis: bold;
+
+}
+.example-container {
+  position: relative;
+  padding: 5px;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-full-width:nth-last-child(0) {
+  margin-bottom: 10px;
+}
+
+.button-row {
+  text-align: right;
+  margin: 20px;
+}
+
+
+.button-row2 {
+  text-align: center;
+}
+
+
+
