@@ -22,7 +22,7 @@ import { MatSortModule } from '@angular/material/sort';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatRadioModule} from '@angular/material/radio';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [],
   imports: [
@@ -49,6 +49,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatDividerModule,
     MatTabsModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     LayoutModule,
