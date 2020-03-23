@@ -4,6 +4,7 @@ import { OwnerProfileComponent } from '@modules/owner/owner-profile/owner-profil
 import { OwnerDogProfileComponent } from '@modules/owner/owner-dog-profile/owner-dog-profile.component';
 
 
+
 const routes: Routes = [
   {
     path: 'profile',
@@ -13,6 +14,7 @@ const routes: Routes = [
     path: 'my-dogs',
     component: OwnerDogProfileComponent
   },
+
 ];
 
 @NgModule({

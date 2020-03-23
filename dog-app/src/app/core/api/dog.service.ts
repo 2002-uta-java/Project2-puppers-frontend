@@ -10,9 +10,13 @@ import { tap, catchError } from 'rxjs/operators';
 // const dogCreate = "http://ec2-52-15-186-205.us-east-2.compute.amazonaws.com:8090/puppers/dogs/new";
 // const dogUpdate = "http://ec2-52-15-186-205.us-east-2.compute.amazonaws.com:8090/puppers/dogs/update";
 // const dogDelete = "http://ec2-52-15-186-205.us-east-2.compute.amazonaws.com:8090/puppers/dogs/delete";
-// 
+//
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+const HTTP_DOGAPI = {
+  headers: new HttpHeaders({'x-api-key':'d1229d73-03ec-48b0-abbd-01922ee5bd3f'})
 };
 
 @Injectable({
@@ -21,8 +25,16 @@ const HTTP_OPTIONS = {
 export class DogService {
   // apiEndPoint: string = "https://my-json-server.typicode.com/dhtran91/demo/dogs";
   apiEndPoint: string = "http://ec2-52-15-186-205.us-east-2.compute.amazonaws.com:8090/puppers/dogs";
+  externalApiEndPoint: string = "https://api.thedogapi.com/v1/breeds";
 
   constructor(private http: HttpClient) { }
+
+  getBreedList(): Observable<Dog[]> {
+    return this.http.get<Dog[]>(this.externalApiEndPoint, HTTP_DOGAPI).pipe(
+      tap(dogs => console.log('fetched dogs')),
+      catchError(this.handleError<Dog[]>('getBreedList', []))
+    )
+  }
 
   getDogs(): Observable<Dog[]> {
     return this.http.get<Dog[]>(this.apiEndPoint).pipe(
