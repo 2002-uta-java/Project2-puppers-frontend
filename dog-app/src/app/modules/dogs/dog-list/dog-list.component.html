@@ -5,7 +5,7 @@
             <mat-card class="card">
                 <mat-card-content class="card-content">
                     <div class="image-container">
-                        <img mat-card-image class="image" [src]="dog.imageUrl || dog.imageUrl === 'url' ? 'https://www.breakthroughk9training.com/wp-content/uploads/2015/02/dog-with-question-marks.png' : dog.imageUrl"
+                        <img mat-card-image class="image" [src]="dog.imageUrl !== 'url' ? dog.imageUrl : 'https://www.breakthroughk9training.com/wp-content/uploads/2015/02/dog-with-question-marks.png'"
                             alt="Profile Photo">
                     </div>
                         

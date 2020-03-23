@@ -14,7 +14,7 @@
                     <div class="content">
                         <ng-container *ngIf="!isEditing || editDog.id !== dog.id">
                             <div class="image-container">
-                                <img alt="Dog profile photo" [src]="dog.imageUrl || dog.imageUrl === 'url' ? 'https://www.breakthroughk9training.com/wp-content/uploads/2015/02/dog-with-question-marks.png' : dog.imageUrl" class="image">
+                                <img alt="Dog profile photo" [src]="dog.imageUrl !== 'url' ? dog.imageUrl : 'https://www.breakthroughk9training.com/wp-content/uploads/2015/02/dog-with-question-marks.png'" class="image">
                             </div>
                             <div style="text-align: center;">
                                 <h2>{{dog.name}}</h2>
