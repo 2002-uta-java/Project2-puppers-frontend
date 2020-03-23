@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="mat-h1">Explore Breed</h1>
+
+  <div class="flex-container">
+    <mat-form-field appearance="fill" class="search-form-field">
+      <mat-label>Input</mat-label>
+      <input matInput name="searchInput" [(ngModel)]="searchInput">
+    </mat-form-field>
+    <button (click)="onSearch(searchInput)" mat-raised-button color="primary">Search</button>
+  </div>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let breed of (breeds$ | async)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{breed.name}} <span *ngIf="breed.country_code">({{breed.country_code}})</span>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <mat-list>
+        <mat-list-item> Breed Group: {{breed.breed_group}} </mat-list-item>
+        <mat-list-item> Origin: {{breed.origin}} </mat-list-item>
+        <mat-list-item> Life Span: {{breed.life_span}} </mat-list-item>
+        <mat-list-item> Weight: {{breed.weight.imperial}} (imperial), {{breed.weight.metric}} (metric) </mat-list-item>
+        <mat-list-item> Height: {{breed.height.imperial}} (imperial), {{breed.height.metric}} (metric) </mat-list-item>
+        <mat-list-item> Bred For: {{breed.bred_for}} </mat-list-item>
+        <mat-list-item> Temperament : {{breed.temperament}} </mat-list-item>
+      </mat-list>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

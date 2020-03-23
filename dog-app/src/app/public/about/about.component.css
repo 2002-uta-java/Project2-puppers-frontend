@@ -73,18 +73,16 @@
     object-position: center;
 }
 
-.about-container {
-    display:flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width:100%
 }
 
 @media only screen and (max-width: 768px) {
-
-}
-
-@media only screen and (min-width: 768px) {
-    .content {
-        flex-direction: row;
+    .flex-container {
+        flex-direction: column;
     }
 }
