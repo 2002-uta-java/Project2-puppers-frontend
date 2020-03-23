@@ -25,6 +25,11 @@ const routes: Routes = [
     loadChildren: () => import('@modules/owner/owner.module').then(m => m.OwnerModule)
   },
   {
+    path: "breeds",
+    canActivate: [AuthGuard],
+    loadChildren: () => import('@modules/breed/breed.module').then(m => m.BreedModule)
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
